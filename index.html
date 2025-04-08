@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Custom Bootstrap Calculator</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <style>
+    body {
+      background-color: #F1E7E7;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .calculator {
+      max-width: 400px;
+      margin: 60px auto;
+      padding: 25px;
+      border-radius: 15px;
+      background-color: #fff;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    }
+    .display {
+      height: 60px;
+      font-size: 28px;
+      text-align: right;
+      padding: 10px;
+      border: 2px solid #E69DB8;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      background-color: #FFFECE;
+    }
+    .btn-custom {
+      background-color: #E69DB8;
+      border: none;
+      font-size: 20px;
+      transition: background-color 0.2s ease;
+    }
+    .btn-custom:hover {
+      background-color: #FFD0C7;
+    }
+    .btn-equal {
+      background-color: #FFD0C7;
+      font-weight: bold;
+    }
+    .btn-equal:hover {
+      background-color: #FFFECE;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <input type="text" class="form-control display" id="display" disabled />
+  <div class="row">
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="clearDisplay()">C</button></div>
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('/')">/</button></div>
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('*')">*</button></div>
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('-')">-</button></div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('7')">7</button></div>
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('8')">8</button></div>
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('9')">9</button></div>
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('+')">+</button></div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('4')">4</button></div>
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('5')">5</button></div>
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('6')">6</button></div>
+    <div class="col-3"><button class="btn btn-equal btn-block" onclick="calculateResult()">=</button></div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('1')">1</button></div>
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('2')">2</button></div>
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('3')">3</button></div>
+    <div class="col-3"><button class="btn btn-custom btn-block" onclick="appendToDisplay('0')">0</button></div>
+  </div>
+</div>
+
+<script>
+  function appendToDisplay(value) {
+    document.getElementById('display').value += value;
+  }
+
+  function clearDisplay() {
+    document.getElementById('display').value = '';
+  }
+
+  function calculateResult() {
+    const display = document.getElementById('display');
+    try {
+      display.value = eval(display.value);
+    } catch {
+      display.value = 'Error';
+    }
+  }
+</script>
+
+</body>
+</html>
